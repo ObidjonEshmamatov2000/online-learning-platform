@@ -8,7 +8,7 @@
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" placeholder="..." required id="password" v-model="form.password">
+                <input type="password" class="form-control" placeholder="password" required id="password" v-model="form.password">
             </div>
             <div>
                 <button type="submit" class="btn btn-block">Sign In</button>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     name: 'Login',
     data() {
@@ -29,8 +30,28 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            signIn: 'auth/signIn'
+        }),
         submit() {
-            alert(this.form.username)
+            // alert(this.form.username);
+            // localStorage.setItem('token', this.form.username);
+
+            // if (localStorage.getItem('token') === 'manager') {
+            //     this.$router.push({ name: 'ManagerHome'});
+            // } else if (localStorage.getItem('token') === 'student') {
+            //     this.$router.push({ name: 'StudentHome' })
+            // } else if (localStorage.getItem('token') === 'teacher') {
+            //     this.$router.push({ name: 'TeacherHome' })
+            // }
+            this.signIn(this.form).then(() => {
+                this.$router.replace({
+                    name: 'Home'
+                }).catch(() => {
+                    console.log('failed');
+                })
+            })
+            
         }
     }
 }
@@ -52,7 +73,7 @@ export default {
     transform: translate(-50%, -50%);
     padding: 45px 25px;
     background-color: white;
-    border-radius: 6px;
+    border-radius: 10px;
 }
 .form-header {
     font-family: Verdana, Geneva, sans-serif;
