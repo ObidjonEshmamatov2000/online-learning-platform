@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="manager-courses">
         <div class="container pt-5">
             <div class="row">
                 <div class="col-6 offset-3">
@@ -55,7 +55,6 @@ export default {
 
         &:hover {
             background-color: #0085B2;
-        }
-        
+        }   
     }
 </style>

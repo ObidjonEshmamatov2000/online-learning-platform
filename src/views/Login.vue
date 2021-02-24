@@ -1,6 +1,9 @@
 <template>
     <div id="login">
         <form class="card" @submit.prevent="submit">
+            <div v-if="error" class="alert alert-danger">
+                {{ error }}
+            </div>
             <h2 class="form-header mb-4">Please Sign in</h2>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
@@ -26,7 +29,8 @@ export default {
             form: {
                 username: '',
                 password: ''
-            }
+            },
+            error: ''
         }
     },
     methods: {
@@ -44,13 +48,17 @@ export default {
             // } else if (localStorage.getItem('token') === 'teacher') {
             //     this.$router.push({ name: 'TeacherHome' })
             // }
-            this.signIn(this.form).then(() => {
-                this.$router.replace({
-                    name: 'Home'
-                }).catch(() => {
-                    console.log('failed');
+            try {
+                this.signIn(this.form).then(() => {
+                    this.$router.replace({
+                        name: 'Home'
+                    }).catch(() => {
+                        console.log('failed');
+                    })
                 })
-            })
+            } catch (e) {
+                this.error = e;
+            }
             
         }
     }

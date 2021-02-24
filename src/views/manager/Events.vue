@@ -1,6 +1,6 @@
 <template>
     <div id="appp">
-        <!-- <modal-component @closemodal="closemodal" :showModal="showModal" :item="item"/> -->
+        <modal-component @closemodal="closemodal" :showModal="showModal" :item="item"/>
         <div>
             <h2 class="display-6 text-center my-4">Timetable of Lessons</h2>
             <div class="container mb-4">
@@ -20,12 +20,12 @@
 import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
-// import Modal from '@/components/Modal'
+import Modal from '@/components/Modal'
 
 export default {
     components: {
         FullCalendar, // make the <FullCalendar> tag available
-        // "modal-component": Modal
+        "modal-component": Modal
     },
     data() {
         return {
